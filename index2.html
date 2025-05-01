@@ -52,18 +52,18 @@ alert("Welcome to sample page 4!");
 function requestMotionPermission(){
   if ( DeviceMotionEvent &&
        typeof DeviceMotionEvent.requestPermission === 'function' ){
-      // iOS 13+ の Safari
-      // 許可を取�&#65533;
+      // iOS 13+ ã® Safari
+      // è¨±å¯ã‚’å–å¾&#65533;
       DeviceMotionEvent.requestPermission().then(permissionState => {
 	  if (permissionState === 'granted') {
-              // 許可を得られた場合、devicemotionをイベントリスナ�&#65533;に追�&#65533;
+              // è¨±å¯ã‚’å¾—ã‚‰ã‚ŒãŸå ´åˆã€devicemotionã‚’ã‚¤ãƒ™ãƒ³ãƒˆãƒªã‚¹ãƒŠã&#65533;ã«è¿½åŠ&#65533;
 	      window.addEventListener("devicemotion", handleAcceleration, false);
 	  } else {
-              // 許可を得られなかった�&#65533;�合�&#65533;処�&#65533;
+              // è¨±å¯ã‚’å¾—ã‚‰ã‚Œãªã‹ã£ãŸå&#65533;´åˆã&#65533;å‡¦ç&#65533;
 	      console.log("Perrmission not granted!");
 	      alert("Perrmission not granted!");
 	  }
-      }).catch(console.error) // https通信でな�&#65533;&#65533;�合などで許可を取得できなかった�&#65533;��&#65533;
+      }).catch(console.error) // httpsé€šä¿¡ã§ãªã&#65533;&#65533;´åˆãªã©ã§è¨±å¯ã‚’å–å¾—ã§ããªã‹ã£ãŸå&#65533;´å&#65533;
 
   } else {
       //For other devices
@@ -84,19 +84,19 @@ function stopDeviceMotion(){
 function requestOrientationPermission(){
   if ( DeviceOrientationEvent &&
        typeof DeviceOrientationEvent.requestPermission === 'function' ) {
-      // iOS 13+ の Safari
-      // 許可を取�&#65533;
+      // iOS 13+ ã® Safari
+      // è¨±å¯ã‚’å–å¾&#65533;
       DeviceOrientationEvent.requestPermission().then(permissionState => {
 	  if (permissionState === 'granted') {
-              // 許可を得られた場合、deviceorientationをイベントリスナ�&#65533;に追�&#65533;
+              // è¨±å¯ã‚’å¾—ã‚‰ã‚ŒãŸå ´åˆã€deviceorientationã‚’ã‚¤ãƒ™ãƒ³ãƒˆãƒªã‚¹ãƒŠã&#65533;ã«è¿½åŠ&#65533;
 	      window.addEventListener("deviceorientation", handleOrientation, true);
 	  } else {
-              // 許可を得られなかった�&#65533;�合�&#65533;処�&#65533;
+              // è¨±å¯ã‚’å¾—ã‚‰ã‚Œãªã‹ã£ãŸå&#65533;´åˆã&#65533;å‡¦ç&#65533;
 	      console.log("Perrmission not granted!");
 	      alert("Perrmission not granted!");
 	  }
       })
-	  .catch(console.error) // https通信でな�&#65533;&#65533;�合などで許可を取得できなかった�&#65533;�
+	  .catch(console.error) // httpsé€šä¿¡ã§ãªã&#65533;&#65533;´åˆãªã©ã§è¨±å¯ã‚’å–å¾—ã§ããªã‹ã£ãŸå&#65533;´
   } else {
     console.log("detected other device. so adding listener...");
     window.addEventListener("deviceorientation", handleOrientation, true);
