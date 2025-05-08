@@ -28,7 +28,7 @@
       <h2>CSV data from Accelerometer</h2>
 	<textarea id="acc-xyz-csv" style="width:300px;height:300px;"></textarea>
 	<textarea id="acc-g-xyz-csv" style="width:300px;height:300px;"></textarea>
-	  <textarea id="rotate-abg-csv" style="width:300px;height:300px;"></textarea>
+	<textarea id="rotate-abg-csv" style="width:300px;height:300px;"></textarea>
 	  
     <h1>Data from Magnetometer</h1>
         <button onclick="requestOrientationPermission();">Get permission and start sensing</button>
@@ -118,9 +118,10 @@ function handleAcceleration(ev){
 	
 	//alert("" + event.acceleration.x + " " + event.acceleration.y + " " + event.acceleration.z);
     
-    	let accelData = [];
-    	let magnetData = [];
-    	let rotationData = [];
+    	let accelData_xyz = [];
+	let accelData_g_xyz = [];
+	let rotateData_abg = [];
+	let oriData_abg = [];
 
 	var e_time = new Date();
 
@@ -145,22 +146,33 @@ function handleAcceleration(ev){
 	$('#rotate-abg-csv').append(e_time.getTime() + ",acc-xyz ," + ev.rotationRate.alpha + "," + ev.rotationRate.beta + "," + ev.rotationRate.gamma + "\n"); 
 	
 	function showStoredData() {
-	const stored_accel = localStorage.getItem('accelData');
+		const stored_accelData_xyz = localStorage.getItem('accelData_xyz');
+		const stored_accelData_g_xyz = localStorage.getItem('accelData_g_xyz');
+		const stored_rotateData_abg = localStorage.getItem('rotateData_abg');
+		c
 	    
-		if (stored_accel_xyz) {
-			const data = JSON.parse(stored_accel_xyz);
-		        document.getElementById('output').value = JSON.stringify(data, null, 2);
+		if (stored_accelData_xyz) {
+			const data = JSON.parse(stored_accelData_xyz);
+		        document.getElementById('output1').value = JSON.stringify(data, null, 2);
 		}
 		
-		if (stored_accel_g_xyz) {
-		        const data = JSON.parse(stored_accel_g_xyz);
-		        document.getElementById('output').value = JSON.stringify(data, null, 2);
+		if (stored_accelData_g_xyz) {
+		        const data = JSON.parse(stored_accelData_g_xyz);
+		        document.getElementById('output2').value = JSON.stringify(data, null, 2);
 		}
 		
-		if (stored_rotate_abg) {
-		        const data = JSON.parse(stored_rotate_abg);
-		        document.getElementById('output').value = JSON.stringify(data, null, 2);
+		if (stored_rotateData_abg) {
+		        const data = JSON.parse(stored_rotateData_abg);
+		        document.getElementById('output3').value = JSON.stringify(data, null, 2);
 		}
+		
+		onst stored_oriData_abg = localStorage.getItem('oriData_abg');
+
+		if (stored_oriData_abg) {
+		        const data = JSON.parse(stored_oriData_abg);
+		        document.getElementById('output4').value = JSON.stringify(data, null, 2);
+		}
+		
 	}
 }
 
@@ -185,7 +197,10 @@ function handleOrientation(ev){
 
 </script>
 
-<textarea id="output" rows="20" cols="50"></textarea>
+<textarea id="output1" rows="20" cols="50"></textarea>
+<textarea id="output2" rows="20" cols="50"></textarea>
+<textarea id="output3" rows="20" cols="50"></textarea>
+<textarea id="output4" rows="20" cols="50"></textarea>
 <button onclick="showStoredData()">保存されたデータを表示</button>
 
 <!--  ===========================================  -->
