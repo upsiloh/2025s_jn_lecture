@@ -114,20 +114,44 @@ function stopDeviceOrientation(){
 ////////////////////////////////////////////////////////////////////
 function handleAcceleration(ev){
     //alert("" + event.acceleration.x + " " + event.acceleration.y + " " + event.acceleration.z);
+    
     $('#accel-x').text( ev.acceleration.x );
     $('#accel-y').text( ev.acceleration.y );
     $('#accel-z').text( ev.acceleration.z );
 
     var e_time = new Date();
-    $('#acc-csv').append(e_time.getTime() + ",acc ," + ev.acceleration.x + "," + ev.acceleration.y + "," + ev.acceleration.z + "\n"); 
+    $('#acc-xyz-csv').append(e_time.getTime() + ",acc-xyz ," + ev.acceleration.x + "," + ev.acceleration.y + "," + ev.acceleration.z + "\n"); 
 
     $('#accel-g-x').text( ev.accelerationIncludingGravity.x );
     $('#accel-g-y').text( ev.accelerationIncludingGravity.y );
     $('#accel-g-z').text( ev.accelerationIncludingGravity.z );
+    $('#acc-g-xyz-csv').append(e_time.getTime() + ",acc-g-xyz ," + ev.accelerationIncludingGravity.x + "," + ev.accelerationIncludingGravity.y + "," + accelerationIncludingGravity.z + "\n");
+
 
     $('#rotate-a').text( ev.rotationRate.alpha );
     $('#rotate-b').text( ev.rotationRate.beta );
     $('#rotate-g').text( ev.rotationRate.gamma );
+    $('#rotate-abg-csv').append(e_time.getTime() + ",acc-xyz ," + ev.rotationRate.alpha + "," + ev.rotationRate.beta + "," + ev.rotationRate.gamma + "\n"); 
+
+    function showStoredData() {
+      const stored_accel = localStorage.getItem('accelData');
+    
+      if (stored_accel_xyz) {
+          const data = JSON.parse(stored_accel_xyz);
+          document.getElementById('output').value = JSON.stringify(data, null, 2);
+      }
+
+      elif (stored_accel_g_xyz) {
+          const data = JSON.parse(stored_accel_g_xyz);
+          document.getElementById('output').value = JSON.stringify(data, null, 2);
+      }
+
+      elif (stored_rotate_abg) {
+          const data = JSON.parse(stored_rotate_abg);
+          document.getElementById('output').value = JSON.stringify(data, null, 2);
+      }
+    }
+
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -182,6 +206,10 @@ let rotationData = [];
 
 
 </script>
+
+<textarea id="output" rows="20" cols="50"></textarea>
+<button onclick="showStoredData()">保存されたデータを表示</button>
+
 <!--  ===========================================  -->
 
 
