@@ -26,8 +26,10 @@
         <p> Gamma: <span id="rotate-g">0</span> </p> 
 
       <h2>CSV data from Accelerometer</h2>
-	<textarea id="acc-csv" style="width:300px;height:300px;"></textarea>
-	
+	<textarea id="acc-xyz-csv" style="width:300px;height:300px;"></textarea>
+	<textarea id="acc-g-xyz-csv" style="width:300px;height:300px;"></textarea>
+	  <textarea id="rotate-abg-csv" style="width:300px;height:300px;"></textarea>
+	  
     <h1>Data from Magnetometer</h1>
         <button onclick="requestOrientationPermission();">Get permission and start sensing</button>
         <button onclick="stopDeviceOrientation();">Stop</button>
@@ -113,6 +115,7 @@ function stopDeviceOrientation(){
 //  - This function will be called about 10-50 times per second
 ////////////////////////////////////////////////////////////////////
 function handleAcceleration(ev){
+	
 	//alert("" + event.acceleration.x + " " + event.acceleration.y + " " + event.acceleration.z);
     
     	let accelData = [];
@@ -121,46 +124,44 @@ function handleAcceleration(ev){
 
 	var e_time = new Date();
 
+	$('#accel-x').text( ev.acceleration.x );
+	$('#accel-y').text( ev.acceleration.y );
+    	$('#accel-z').text( ev.acceleration.z );
 
-    $('#accel-x').text( ev.acceleration.x );
-    $('#accel-y').text( ev.acceleration.y );
-    $('#accel-z').text( ev.acceleration.z );
-
-    $('#acc-xyz-csv').append(e_time.getTime() + ",acc-xyz ," + ev.acceleration.x + "," + ev.acceleration.y + "," + ev.acceleration.z + "\n"); 
+    	$('#acc-xyz-csv').append(e_time.getTime() + ",acc-xyz ," + ev.acceleration.x + "," + ev.acceleration.y + "," + ev.acceleration.z + "\n"); 
 
 	
-    $('#accel-g-x').text( ev.accelerationIncludingGravity.x );
-    $('#accel-g-y').text( ev.accelerationIncludingGravity.y );
-    $('#accel-g-z').text( ev.accelerationIncludingGravity.z );
+	$('#accel-g-x').text( ev.accelerationIncludingGravity.x );
+	$('#accel-g-y').text( ev.accelerationIncludingGravity.y );
+	$('#accel-g-z').text( ev.accelerationIncludingGravity.z );
+		
+	$('#acc-g-xyz-csv').append(e_time.getTime() + ",acc-g-xyz ," + ev.accelerationIncludingGravity.x + "," + ev.accelerationIncludingGravity.y + "," + accelerationIncludingGravity.z + "\n");
+
 	
-    $('#acc-g-xyz-csv').append(e_time.getTime() + ",acc-g-xyz ," + ev.accelerationIncludingGravity.x + "," + ev.accelerationIncludingGravity.y + "," + accelerationIncludingGravity.z + "\n");
-
-
-    $('#rotate-a').text( ev.rotationRate.alpha );
-    $('#rotate-b').text( ev.rotationRate.beta );
-    $('#rotate-g').text( ev.rotationRate.gamma );
+	$('#rotate-a').text( ev.rotationRate.alpha );
+	$('#rotate-b').text( ev.rotationRate.beta );
+	$('#rotate-g').text( ev.rotationRate.gamma );
+		
+	$('#rotate-abg-csv').append(e_time.getTime() + ",acc-xyz ," + ev.rotationRate.alpha + "," + ev.rotationRate.beta + "," + ev.rotationRate.gamma + "\n"); 
 	
-    $('#rotate-abg-csv').append(e_time.getTime() + ",acc-xyz ," + ev.rotationRate.alpha + "," + ev.rotationRate.beta + "," + ev.rotationRate.gamma + "\n"); 
-
-    function showStoredData() {
-      const stored_accel = localStorage.getItem('accelData');
-    
-      if (stored_accel_xyz) {
-          const data = JSON.parse(stored_accel_xyz);
-          document.getElementById('output').value = JSON.stringify(data, null, 2);
-      }
-
-      if (stored_accel_g_xyz) {
-          const data = JSON.parse(stored_accel_g_xyz);
-          document.getElementById('output').value = JSON.stringify(data, null, 2);
-      }
-
-      if (stored_rotate_abg) {
-          const data = JSON.parse(stored_rotate_abg);
-          document.getElementById('output').value = JSON.stringify(data, null, 2);
-      }
-    }
-
+	function showStoredData() {
+	const stored_accel = localStorage.getItem('accelData');
+	    
+		if (stored_accel_xyz) {
+			const data = JSON.parse(stored_accel_xyz);
+		        document.getElementById('output').value = JSON.stringify(data, null, 2);
+		}
+		
+		if (stored_accel_g_xyz) {
+		        const data = JSON.parse(stored_accel_g_xyz);
+		        document.getElementById('output').value = JSON.stringify(data, null, 2);
+		}
+		
+		if (stored_rotate_abg) {
+		        const data = JSON.parse(stored_rotate_abg);
+		        document.getElementById('output').value = JSON.stringify(data, null, 2);
+		}
+	}
 }
 
 ////////////////////////////////////////////////////////////////////
