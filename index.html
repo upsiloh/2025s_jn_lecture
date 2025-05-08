@@ -107,7 +107,7 @@ function requestOrientationPermission(){
 }
 
 function stopDeviceOrientation(){
-            window.removeEventListener("deviceorientation", handleOrientation, true);
+	window.removeEventListener("deviceorientation", handleOrientation, true);
 }
 
 
@@ -136,7 +136,6 @@ function handleAcceleration(ev){
     let stored = localStorage.getItem("accelData");
     stored = stored ? stored + "\n" + csvLine : csvLine;
     localStorage.setItem("accelData", stored);
-}
 
     $('#accel-g-x').text( ev.accelerationIncludingGravity.x );
     $('#accel-g-y').text( ev.accelerationIncludingGravity.y );
@@ -183,7 +182,7 @@ function clearStoredData() {
       $('#acc-csv').val('');
       $('#ori-csv').val('');
       alert("Stored data cleared.");
-    }
+}
 
 </script>
 <!--  ===========================================  -->
