@@ -115,18 +115,11 @@ function stopDeviceOrientation(){
 //Function(1): to handle acceleration data
 //  - This function will be called about 10-50 times per second
 ////////////////////////////////////////////////////////////////////
-function handleAcceleration(ev){
-            //alert("" + event.acceleration.x + " " + event.acceleration.y + " " + event.acceleration.z);
-            $('#accel-x').text(ev.acceleration.x);
-    $('#accel-y').text( ev.acceleration.y );
-    $('#accel-z').text( ev.acceleration.z );
-
-    var e_time = new Date();
 
 //ーーーーーーーーーー
 
-	function handleAcceleration(ev){
-            $('#accel-x').text(ev.acceleration.x);
+function handleAcceleration(ev){
+	$('#accel-x').text(ev.acceleration.x);
     $('#accel-y').text(ev.acceleration.y);
     $('#accel-z').text(ev.acceleration.z);
 
@@ -162,17 +155,9 @@ function handleAcceleration(ev){
 //Function(2): to handle magnetometer data
 //  - This function will be called about 10-50 times per second
 ////////////////////////////////////////////////////////////////////
-function handleOrientation(ev){
-    $('#ori-abs').text(ev.absolute);
-    $('#ori-a').text( ev.alpha );
-    $('#ori-b').text( ev.beta );
-    $('#ori-g').text( ev.gamma );
-
-    var e_time = new Date();
-
 //ーーーーーーーーーー
 
-	function handleOrientation(ev){
+function handleOrientation(ev){
     $('#ori-abs').text(ev.absolute);
     $('#ori-a').text(ev.alpha);
     $('#ori-b').text(ev.beta);
