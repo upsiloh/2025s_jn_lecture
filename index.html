@@ -129,8 +129,8 @@ function handleAcceleration(ev){
     $('#rotate-b').text(ev.rotationRate.beta);
     $('#rotate-g').text(ev.rotationRate.gamma);
 
-    var e_time = new Date().getTime();
-    var csvLine = `${e_time},acc,${ev.acceleration.x},${ev.acceleration.y},${ev.acceleration.z}`;
+    let e_time = new Date().getTime();
+    let csvLine = `${e_time},acc,${ev.acceleration.x},${ev.acceleration.y},${ev.acceleration.z}`;
 
     // ストレージに保存
     let stored = localStorage.getItem("accelData");
@@ -157,8 +157,8 @@ function handleOrientation(ev){
     $('#ori-b').text(ev.beta);
     $('#ori-g').text(ev.gamma);
 
-    var e_time = new Date().getTime();
-    var csvLine = `${e_time},ori,${ev.absolute},${ev.alpha},${ev.beta},${ev.gamma}`;
+    let e_time = new Date().getTime();
+    let csvLine = `${e_time},ori,${ev.absolute},${ev.alpha},${ev.beta},${ev.gamma}`;
 
     // ストレージに保存
     let stored = localStorage.getItem("oriData");
