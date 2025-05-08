@@ -11,6 +11,7 @@
         <button onclick="stopDeviceMotion();">Stop</button>
 
         <button onclick="showStoredData();">Show stored data</button>
+        <button onclick="clearStoredData();">Clear stored data</button>
 
         <h2>Acceleration</h2>
         <p> X: <span id="accel-x">0</span> </p>
@@ -199,8 +200,15 @@ function showStoredData(){
     $('#ori-csv').val(ori);
 }
 
-    </script>
-    <!--  ===========================================  -->
+function clearStoredData() {
+      localStorage.removeItem("accelData");
+      localStorage.removeItem("oriData");
+      $('#acc-csv').val('');
+      $('#ori-csv').val('');
+      alert("Stored data cleared.");
+    }
 
+</script>
+<!--  ===========================================  -->
 
 </html>
