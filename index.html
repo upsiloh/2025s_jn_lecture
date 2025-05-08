@@ -119,8 +119,33 @@ function handleAcceleration(ev){
     $('#accel-z').text( ev.acceleration.z );
 
     var e_time = new Date();
-    $('#acc-csv').append(e_time.getTime() + ",acc ," + ev.acceleration.x + "," + ev.acceleration.y + "," + ev.acceleration.z + "\n"); 
+    
+//ーーーーーーーーーー
 
+	function handleAcceleration(ev){
+    $('#accel-x').text(ev.acceleration.x);
+    $('#accel-y').text(ev.acceleration.y);
+    $('#accel-z').text(ev.acceleration.z);
+
+    $('#accel-g-x').text(ev.accelerationIncludingGravity.x);
+    $('#accel-g-y').text(ev.accelerationIncludingGravity.y);
+    $('#accel-g-z').text(ev.accelerationIncludingGravity.z);
+
+    $('#rotate-a').text(ev.rotationRate.alpha);
+    $('#rotate-b').text(ev.rotationRate.beta);
+    $('#rotate-g').text(ev.rotationRate.gamma);
+
+    const e_time = new Date().getTime();
+    const csvLine = `${e_time},acc,${ev.acceleration.x},${ev.acceleration.y},${ev.acceleration.z}`;
+
+    // ストレージに保存
+    let stored = localStorage.getItem("accelData");
+    stored = stored ? stored + "\n" + csvLine : csvLine;
+    localStorage.setItem("accelData", stored);
+}
+
+	//ーーーーーーーーーー
+	
     $('#accel-g-x').text( ev.accelerationIncludingGravity.x );
     $('#accel-g-y').text( ev.accelerationIncludingGravity.y );
     $('#accel-g-z').text( ev.accelerationIncludingGravity.z );
@@ -141,8 +166,40 @@ function handleOrientation(ev){
     $('#ori-g').text( ev.gamma );
 
     var e_time = new Date();
-    $('#ori-csv').append(e_time.getTime() + ", ori," + ev.absolute + "," + ev.alpha + "," + ev.beta + "," + ev.gamma + "\n");
+    //$('#ori-csv').append(e_time.getTime() + ", ori," + ev.absolute + "," + ev.alpha + "," + ev.beta + "," + ev.gamma + "\n");
+
+//ーーーーーーーーーー
+
+	function handleOrientation(ev){
+    $('#ori-abs').text(ev.absolute);
+    $('#ori-a').text(ev.alpha);
+    $('#ori-b').text(ev.beta);
+    $('#ori-g').text(ev.gamma);
+
+    const e_time = new Date().getTime();
+    const csvLine = `${e_time},ori,${ev.absolute},${ev.alpha},${ev.beta},${ev.gamma}`;
+
+    // ストレージに保存
+    let stored = localStorage.getItem("oriData");
+    stored = stored ? stored + "\n" + csvLine : csvLine;
+    localStorage.setItem("oriData", stored);
 }
+
+
+	//ーーーーーーーーーー
+}
+	function showStoredData(){
+    const accel = localStorage.getItem("accelData") || "";
+    const ori = localStorage.getItem("oriData") || "";
+    $('#acc-csv').val(accel);
+    $('#ori-csv').val(ori);
+}
+
+
+	<button onclick="showStoredData();">Show stored data</button>
+
+	
+
 
 </script>
 <!--  ===========================================  -->
