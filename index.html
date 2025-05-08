@@ -115,6 +115,11 @@ function stopDeviceOrientation(){
 function handleAcceleration(ev){
     //alert("" + event.acceleration.x + " " + event.acceleration.y + " " + event.acceleration.z);
     
+    let accelData = [];
+    let magnetData = [];
+    let rotationData = [];
+
+
     $('#accel-x').text( ev.acceleration.x );
     $('#accel-y').text( ev.acceleration.y );
     $('#accel-z').text( ev.acceleration.z );
@@ -197,10 +202,6 @@ ev.rotationRate.beta
 ev.rotationRate.gamma
 ```
 
-//ボタンを押した時にだけtext areaを更新
-let accelData = [];
-let magnetData = [];
-let rotationData = [];
 
 
 
