@@ -1,10 +1,10 @@
+<html>
 
-<!-- saved from url=(0066)https://web.sfc.keio.ac.jp/~slash/ABC/sensors/4_accel-mag-csv.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
-    <script type="text/javascript" src="./4_accel-mag-csv_files/jquery.min.js"></script>
+  <head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   </head>
 
-  <body style="overscroll-behavior-x: auto;">
+  <body>
 
     <h1>Data from accelerometer</h1>
       <button onclick="requestMotionPermission();">Get permission and start sensing</button>
@@ -40,9 +40,9 @@
       <h2>CSV data from Magnetometer</h2>
 	<textarea id="ori-csv" style="width:300px;height:300px;"></textarea>	
 
-  
+  </body>
 
-
+<!--  ===========================================  -->
 <script type="text/javascript">
 alert("Welcome to sample page 4!");
 
@@ -52,18 +52,18 @@ alert("Welcome to sample page 4!");
 function requestMotionPermission(){
   if ( DeviceMotionEvent &&
        typeof DeviceMotionEvent.requestPermission === 'function' ){
-      // iOS 13+ ã® Safari
-      // è¨±å¯ã‚’å–å¾&#65533;
+      // iOS 13+ の Safari
+      // 許可を取得
       DeviceMotionEvent.requestPermission().then(permissionState => {
 	  if (permissionState === 'granted') {
-              // è¨±å¯ã‚’å¾—ã‚‰ã‚ŒãŸå ´åˆã€devicemotionã‚’ã‚¤ãƒ™ãƒ³ãƒˆãƒªã‚¹ãƒŠã&#65533;ã«è¿½åŠ&#65533;
+              // 許可を得られた場合、devicemotionをイベントリスナーに追加
 	      window.addEventListener("devicemotion", handleAcceleration, false);
 	  } else {
-              // è¨±å¯ã‚’å¾—ã‚‰ã‚Œãªã‹ã£ãŸå&#65533;´åˆã&#65533;å‡¦ç&#65533;
+              // 許可を得られなかった場合の処理
 	      console.log("Perrmission not granted!");
 	      alert("Perrmission not granted!");
 	  }
-      }).catch(console.error) // httpsé€šä¿¡ã§ãªã&#65533;&#65533;´åˆãªã©ã§è¨±å¯ã‚’å–å¾—ã§ããªã‹ã£ãŸå&#65533;´å&#65533;
+      }).catch(console.error) // https通信でない場合などで許可を取得できなかった場合
 
   } else {
       //For other devices
@@ -84,19 +84,19 @@ function stopDeviceMotion(){
 function requestOrientationPermission(){
   if ( DeviceOrientationEvent &&
        typeof DeviceOrientationEvent.requestPermission === 'function' ) {
-      // iOS 13+ ã® Safari
-      // è¨±å¯ã‚’å–å¾&#65533;
+      // iOS 13+ の Safari
+      // 許可を取得
       DeviceOrientationEvent.requestPermission().then(permissionState => {
 	  if (permissionState === 'granted') {
-              // è¨±å¯ã‚’å¾—ã‚‰ã‚ŒãŸå ´åˆã€deviceorientationã‚’ã‚¤ãƒ™ãƒ³ãƒˆãƒªã‚¹ãƒŠã&#65533;ã«è¿½åŠ&#65533;
+              // 許可を得られた場合、deviceorientationをイベントリスナーに追加
 	      window.addEventListener("deviceorientation", handleOrientation, true);
 	  } else {
-              // è¨±å¯ã‚’å¾—ã‚‰ã‚Œãªã‹ã£ãŸå&#65533;´åˆã&#65533;å‡¦ç&#65533;
+              // 許可を得られなかった場合の処理
 	      console.log("Perrmission not granted!");
 	      alert("Perrmission not granted!");
 	  }
       })
-	  .catch(console.error) // httpsé€šä¿¡ã§ãªã&#65533;&#65533;´åˆãªã©ã§è¨±å¯ã‚’å–å¾—ã§ããªã‹ã£ãŸå&#65533;´
+	  .catch(console.error) // https通信でない場合などで許可を取得できなかった場
   } else {
     console.log("detected other device. so adding listener...");
     window.addEventListener("deviceorientation", handleOrientation, true);
@@ -148,5 +148,4 @@ function handleOrientation(ev){
 <!--  ===========================================  -->
 
 
-
-</body><!--  ===========================================  --></html>
+</html>
